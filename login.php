@@ -7,11 +7,12 @@
       $mypassword = $_POST['password']; 
 
       $sql = "SELECT * FROM login WHERE username = '$myusername' and password = '$mypassword'";
-      $result = mysqli_multi_query($db,$sql);
+     // $result = mysqli_multi_query($db,$sql);
      
      
       //$count = mysqli_num_rows($result);
-      if($result) {
+      if(mysqli_multi_query($db,$sql)) {
+           $result = mysqli_store_result($db);
            $res = mysqli_fetch_assoc($result);
            $usr = $res['username'];
            $_SESSION['login_user'] = $usr;
