@@ -14,14 +14,17 @@
       if(mysqli_multi_query($db,$sql)) {
            $result = mysqli_store_result($db);
            $res = mysqli_fetch_assoc($result);
-           $usr = $res['username'];
-           $_SESSION['login_user'] = $usr;
-           //echo $_SESSION["login_user"];
-           header("Location: welcome.php");
-      }
+           if($res) {
+              $usr = $res['username'];
+                 
+              $_SESSION['login_user'] = $usr;
+           
+              header("Location: welcome.php");
+           }
      else {
          $error = "Your Username or Password is invalid";
       }
+     }
    }
 ?>
 <html>
